@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eee3f2">
+  <title>GULP. | Catálogo de suplementos</title>
+  <style>
+    :root{--lila:#eee3f2;--lila2:#d9c5e1;--violeta:#654c70;--salmon:#e9a99f;--ink:#302a32;--muted:#766e79;--paper:#fffdfd;--line:#eee8ef}
+    *{box-sizing:border-box} body{margin:0;background:#faf8fa;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
+    a{color:inherit} .wrap{max-width:1080px;margin:auto;padding:0 18px}
+    header{background:linear-gradient(135deg,#f3eaf5,#f8e9e5);padding:28px 0 34px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .logo{font-size:28px;font-weight:900;letter-spacing:2px;color:var(--violet)}
+    .pill{font-size:11px;letter-spacing:1.4px;font-weight:800;color:var(--violet);border:1px solid #cdb9d5;border-radius:30px;padding:8px 12px}
+    .hero{padding:35px 0 8px;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:22px}
+    h1{font-size:clamp(34px,6vw,58px);line-height:1.02;margin:0 0 12px;color:var(--violet);letter-spacing:-1.8px}
+    .hero p{max-width:510px;color:#685c6c;font-size:16px;line-height:1.6;margin:0}
+    .hero-art{min-height:190px;border-radius:24px;background:linear-gradient(145deg,#e4d4e9,#f1c9c0);display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;color:#654c70;font-weight:800;font-size:20px}
+    main{padding:30px 0 60px}.intro{display:flex;justify-content:space-between;align-items:end;gap:12px;margin-bottom:18px}
+    h2{font-size:24px;color:var(--violet);margin:0}.sub{font-size:13px;color:var(--muted);margin-top:5px}
+    .search{width:min(100%,260px);border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:white;font:inherit;outline-color:var(--lila2)}
+    .filters{display:flex;gap:8px;overflow:auto;padding:2px 0 16px}
+    .filter{white-space:nowrap;border:1px solid var(--line);background:white;color:#655a68;border-radius:30px;padding:9px 14px;font-weight:700;font-size:13px;cursor:pointer}
+    .filter.active{background:var(--violet);border-color:var(--violet);color:white}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .card{background:white;border:1px solid var(--line);border-radius:19px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 5px 20px #4b315008}
+    .photo{height:175px;background:linear-gradient(135deg,#f2eaf4,#f8e8e4);display:flex;align-items:center;justify-content:center;color:#806b88;font-size:13px;text-align:center;padding:15px}
+    .photo img{width:100%;height:100%;object-fit:cover}
+    .body{padding:15px;display:flex;flex-direction:column;gap:9px;flex:1}
+    .cat{font-size:10px;text-transform:uppercase;letter-spacing:1.1px;color:#967da0;font-weight:800}
+    h3{font-size:18px;margin:0;color:#3d3341}.desc{font-size:13px;line-height:1.5;color:#716976;margin:0}
+    .foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:5px}
+    .price{font-size:18px;font-weight:900;color:var(--violet)}.stock{font-size:11px;font-weight:800;color:#397455;background:#eaf5ee;padding:6px 9px;border-radius:30px}
+    .stock.out{color:#98615b;background:#f8ecea}
+    .ask{display:block;text-align:center;text-decoration:none;background:var(--violet);color:white;padding:11px;border-radius:11px;font-size:13px;font-weight:800;margin-top:4px}
+    .empty{grid-column:1/-1;padding:35px;text-align:center;color:var(--muted);background:white;border-radius:16px}
+    .note{margin-top:28px;padding:18px;border-radius:16px;background:#f1e9f3;color:#66566c;font-size:12px;line-height:1.6}
+    footer{padding:24px 0;background:#eee5f0;text-align:center;color:#705d78;font-size:12px}
+    @media(max-width:760px){.hero{grid-template-columns:1fr}.hero-art{min-height:120px}.grid{grid-template-columns:repeat(2,1fr)}.photo{height:145px}}
+    @media(max-width:480px){.wrap{padding:0 14px}.intro{align-items:stretch;flex-direction:column}.search{width:100%}.grid{gap:10px}.photo{height:125px}.body{padding:12px}.price{font-size:16px}.hero{padding-top:28px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top"><div class="logo">GULP.</div><div class="pill">SUPLEMENTACIÓN DEPORTIVA</div></div>
+    <div class="hero">
+      <div><h1>Potenciá tu<br>mejor versión.</h1><p>Conocé nuestros suplementos, descubrí para qué sirve cada uno y encontrá el que acompaña tus objetivos.</p></div>
+      <div class="hero-art">TU ENERGÍA.<br>TUS OBJETIVOS.<br>GULP.</div>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <div class="intro"><div><h2>Catálogo de productos</h2><div class="sub">Explorá las categorías y consultanos lo que necesites.</div></div><input id="search" class="search" type="search" placeholder="Buscar suplemento..."></div>
+  <nav id="filters" class="filters" aria-label="Categorías"></nav>
+  <section id="products" class="grid" aria-live="polite"></section>
+  <div class="note"><strong>Información importante:</strong> las descripciones son orientativas y no reemplazan el asesoramiento de un profesional de la salud o nutrición. Los suplementos no sustituyen una alimentación variada.</div>
+</main>
+<footer><div class="wrap">GULP. · Bahía Blanca · Consultas y pedidos por WhatsApp</div></footer>
+<script>
+  // CONFIGURACIÓN: completaremos estos datos cuando conectemos tu catálogo.
+  const WHATSAPP_NUMBER = "542915348300"; // Ejemplo: 5492911234567 (sin +, espacios ni guiones)
+  const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTlx3FvE8hdQQftK41RujFi4e6BGXpihVY_xB3G3ys2dIdJb7nGD55W1cf8A2jC3VHbYBtpkW4vgGd0/pub?output=csv";   // URL CSV público de Google Sheets. Si queda vacío, se muestran productos de ejemplo.
+
+  const sampleProducts = [
+    {nombre:"Creatina monohidratada",categoria:"Creatinas",descripcion:"La creatina ayuda a mejorar el rendimiento en esfuerzos cortos e intensos y favorece el aumento de fuerza junto con el entrenamiento.",precio:"Consultar",stock:"Disponible",imagen:""},
+    {nombre:"Proteína whey",categoria:"Proteínas",descripcion:"Aporta proteínas para complementar la alimentación y cubrir las necesidades proteicas vinculadas al mantenimiento y desarrollo muscular.",precio:"Consultar",stock:"Disponible",imagen:""},
+    {nombre:"Magnesio",categoria:"Magnesio",descripcion:"Mineral esencial que participa en numerosas funciones del organismo, incluida la función muscular y nerviosa.",precio:"Consultar",stock:"Disponible",imagen:""},
+    {nombre:"Colágeno",categoria:"Colágeno",descripcion:"Aporta péptidos de colágeno. Su uso y conveniencia dependen de los objetivos y de la alimentación general.",precio:"Consultar",stock:"Disponible",imagen:""},
+    {nombre:"Pre-entreno",categoria:"Pre-entrenos",descripcion:"Producto formulado para consumirse antes de entrenar. Revisá sus ingredientes, dosis y contenido de cafeína antes de usarlo.",precio:"Consultar",stock:"Disponible",imagen:""},
+    {nombre:"Otros suplementos",categoria:"Otros",descripcion:"Consultanos por otros productos y disponibilidad.",precio:"Consultar",stock:"Disponible",imagen:""}
+  ];
+  let allProducts = sampleProducts, activeCategory = "Todos";
+  const $ = s => document.querySelector(s);
+  function csvToRows(text){
+    const rows=[]; let row=[],cell="",quoted=false;
+    for(let i=0;i<text.length;i++){const c=text[i],n=text[i+1];
+      if(c==='"'&&quoted&&n==='"'){cell+='"';i++}
+      else if(c==='"')quoted=!quoted;
+      else if(c===','&&!quoted){row.push(cell);cell=""}
+      else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&n==='\n')i++;row.push(cell);if(row.some(x=>x.trim()))rows.push(row);row=[];cell=""}
+      else cell+=c;
+    }
+    row.push(cell);if(row.some(x=>x.trim()))rows.push(row);
+    const headers=(rows.shift()||[]).map(x=>x.trim().toLowerCase());
+    return rows.map(r=>Object.fromEntries(headers.map((h,i)=>[h,(r[i]||"").trim()])));
+  }
+  function whatsappLink(product){
+    const msg=encodeURIComponent(`Hola Gulp! Quería consultar por ${product.nombre}.`);
+    return WHATSAPP_NUMBER ? `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}` : `https://www.instagram.com/`;
+  }
+  function render(){
+    const categories=["Todos",...new Set(allProducts.map(p=>p.categoria).filter(Boolean))];
+    $("#filters").innerHTML=categories.map(c=>`<button class="filter ${c===activeCategory?'active':''}" data-cat="${escapeHtml(c)}">${escapeHtml(c)}</button>`).join("");
+    const q=$("#search").value.toLowerCase();
+    const list=allProducts.filter(p=>(activeCategory==="Todos"||p.categoria===activeCategory)&&`${p.nombre} ${p.descripcion} ${p.categoria}`.toLowerCase().includes(q));
+    $("#products").innerHTML=list.length?list.map(p=>{
+      const out=(p.stock||"").toLowerCase().includes("agot");
+      const image=p.imagen?`<img src="${escapeHtml(p.imagen)}" alt="${escapeHtml(p.nombre)}" loading="lazy">`:`<span>Imagen del producto</span>`;
+      return `<article class="card"><div class="photo">${image}</div><div class="body"><div class="cat">${escapeHtml(p.categoria||"Suplemento")}</div><h3>${escapeHtml(p.nombre)}</h3><p class="desc">${escapeHtml(p.descripcion)}</p><div class="foot"><span class="price">${escapeHtml(p.precio||"Consultar")}</span><span class="stock ${out?'out':''}">${out?'Agotado':escapeHtml(p.stock||"Consultar")}</span></div><a class="ask" href="${whatsappLink(p)}" target="_blank" rel="noopener">Consultar producto</a></div></article>`;
+    }).join(""):`<div class="empty">No encontramos productos con esa búsqueda.</div>`;
+  }
+  function escapeHtml(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+  $("#filters").addEventListener("click",e=>{const b=e.target.closest("button[data-cat]");if(b){activeCategory=b.dataset.cat;render();}});
+  $("#search").addEventListener("input",render);
+  async function loadSheet(){
+    if(!SHEET_CSV_URL){render();return;}
+    try{const r=await fetch(SHEET_CSV_URL);if(!r.ok)throw Error("No se pudo leer la planilla");const rows=csvToRows(await r.text());if(rows.length)allProducts=rows;render();}
+    catch(e){console.warn(e);render();}
+  }
+  loadSheet();
+</script>
+</body>
+</html>
