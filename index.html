@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#eee3f2">
-  <title>GULP. | Catálogo de suplementos</title>
+  <title>FIGHTERS CLUB. | Catálogo de suplementos</title>
   <style>
     :root{--lila:#eee3f2;--lila2:#d9c5e1;--violeta:#654c70;--salmon:#e9a99f;--ink:#302a32;--muted:#766e79;--paper:#fffdfd;--line:#eee8ef}
     *{box-sizing:border-box} body{margin:0;background:#faf8fa;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}
@@ -47,7 +47,7 @@
     <div class="top"><div class="logo">GULP.</div><div class="pill">SUPLEMENTACIÓN DEPORTIVA</div></div>
     <div class="hero">
       <div><h1>Potenciá tu<br>mejor versión.</h1><p>Conocé nuestros suplementos, descubrí para qué sirve cada uno y encontrá el que acompaña tus objetivos.</p></div>
-      <div class="hero-art">TU ENERGÍA.<br>TUS OBJETIVOS.<br>GULP.</div>
+      <div class="hero-art">TU ENERGÍA.<br>TUS OBJETIVOS.<br>FIGHTERS CLUB.</div>
     </div>
   </div>
 </header>
@@ -57,7 +57,7 @@
   <section id="products" class="grid" aria-live="polite"></section>
   <div class="note"><strong>Información importante:</strong> las descripciones son orientativas y no reemplazan el asesoramiento de un profesional de la salud o nutrición. Los suplementos no sustituyen una alimentación variada.</div>
 </main>
-<footer><div class="wrap">GULP. · Bahía Blanca · Consultas y pedidos por WhatsApp</div></footer>
+<footer><div class="wrap">FIGHTERS GYM. · Bahía Blanca · Consultas y pedidos por WhatsApp</div></footer>
 <script>
   // CONFIGURACIÓN: completaremos estos datos cuando conectemos tu catálogo.
   const WHATSAPP_NUMBER = "542915348300"; // Ejemplo: 5492911234567 (sin +, espacios ni guiones)
@@ -88,7 +88,7 @@
   }
   function whatsappLink(product){
     const msg=encodeURIComponent(`Hola Gulp! Quería consultar por ${product.nombre}.`);
-    return WHATSAPP_NUMBER ? `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}` : `https://www.instagram.com/`;
+    //return WHATSAPP_NUMBER ? `https://wa.me/${WHATSAPP_NUMBER}?text=${msg}` : `https://www.instagram.com/`;
   }
   function render(){
     const categories=["Todos",...new Set(allProducts.map(p=>p.categoria).filter(Boolean))];
